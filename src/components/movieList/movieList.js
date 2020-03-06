@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Movie from '../Movie/Movie';
 import { connect } from 'react-redux';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 class movieList extends Component {
 
@@ -16,14 +17,19 @@ class movieList extends Component {
 
     render() {
         return (
-            <div className='movieResults'>
-                {this.props.reduxState.movies &&
-                    this.props.reduxState.movies.map((movie) => {
-                        return(
-                            <Movie movie={movie}/>
-                        )
-                    })}
-            </div>
+            <Router>
+                <div className='movieResults'>
+                    {this.props.reduxState.movies &&
+                        this.props.reduxState.movies.map((movie) => {
+                            return(
+                                <>
+                                    <Movie movie={movie} />
+                                    <Route path="/movie" Component={Movie} />
+                                </>
+                            )
+                        })}
+                </div>
+            </Router>
         )
     }
 }
