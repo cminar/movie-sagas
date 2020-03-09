@@ -15,9 +15,9 @@ class Genre extends Component {
         return (
             <>
                     <h3>{this.props.match.params.id}</h3>
-                    {this.props.reduxState.genreMovie.map((movie)=>{
+                    {this.props.reduxState.genreMovie.map((name)=>{
                     return(
-                    <Movie movie = {movie}/>
+                        <h3>Genre: {name.name}</h3>
                     )
                     })}
             </>
