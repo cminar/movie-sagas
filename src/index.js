@@ -52,9 +52,14 @@ const genres = (state = [], action) => {
 }
 
 function* getMovies(action) {
-    const results = yield axios.get('/movie')
-    yield put({type: 'SET_MOVIES',payload: results.data})
-    console.log(results.data);
+    try{
+        const results = yield axios.get('/movie')
+        yield put({type: 'SET_MOVIES',payload: results.data})
+        console.log(results.data);
+    }catch (error){
+        console.lof('error in getMovies',error)
+    }
+
 }
 
 function* getMovie(action) {

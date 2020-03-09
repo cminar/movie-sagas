@@ -24,7 +24,7 @@ class movieList extends Component {
                             return(
                                 <>
                                     <Movie movie={movie} />
-                                    <Route path="/movie" Component={Movie} />
+                                    {/* <Route path="/movie" Component={Movie} /> */}
                                 </>
                             )
                         })}

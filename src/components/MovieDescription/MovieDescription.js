@@ -16,16 +16,16 @@ class MovieDescription extends Component {
     single = () => {
         this.props.dispatch({type: 'SINGLE_MOVIE', payload: this.props.match.params.id})
         console.log('redux in single', this.props.reduxState.movie);
-        // this.list();
+        this.list();
     }
+ 
+    list = () => {
+        console.log('reduxState before', this.props.reduxState.movie);
+        this.setState({movie: this.props.reduxState.movie})
+        console.log('in list state: ',this.state.movie)
+        console.log('reduxState after', this.props.reduxState.movie)
 
-    // list = () => {
-    //     console.log('reduxState before', this.props.reduxState.movie);
-    //     this.setState({movie: this.props.reduxState.movie})
-    //     console.log('in list state: ',this.state.movie)
-    //     console.log('reduxState after', this.props.reduxState.movie)
-
-    // }
+    }
     
 
     render() {
