@@ -49,7 +49,7 @@ router.put('/', (req, res) => {
   pool.query(queryText, queryValues)
     .then(() => { res.sendStatus(200);})
     .catch((err) => {
-      console.log('Error completing SELECT plant query', err);
+      console.log('Error completing SELECT query', err);
       res.sendStatus(500);
     });
 });
