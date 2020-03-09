@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import './Movie.css'
+import './Movie.css';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+
  
 class Movie extends Component {
 
@@ -7,8 +11,11 @@ class Movie extends Component {
         toggle: false
     }
 
-    handleClick = (event) => {
+    handleClick = (id) => {
         console.log('in handleClick')
+        console.log(this.props.history);
+        this.props.history.push(`/description/${id}`)
+        
     }
 
     render() {
@@ -19,7 +26,9 @@ class Movie extends Component {
                     <br></br>
                     <h3>Title: {this.props.movie.title}</h3>
                     <br></br>
-                    <img src={this.props.movie.poster} height='200px' width='auto' onClick={this.handleClick}/>
+                    <img src={this.props.movie.poster} height='200px' width='auto' onClick= { () => this.handleClick(this.props.movie.id)}/>
+                    <br></br>
+                    {this.props.movie.description}
                     <br></br>
                     <br></br>
                     <br></br>
@@ -28,4 +37,9 @@ class Movie extends Component {
         )
     }
 }
-export default Movie;
+const putReduxStateOnProps = (reduxState) => ({
+    reduxState
+  })
+  
+  
+export default withRouter(connect(putReduxStateOnProps)(Movie));

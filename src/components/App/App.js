@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
 import './App.css';
 import MovieList from '../movieList/movieList';
+import MovieDescription from '../MovieDescription/MovieDescription';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
       <div className="App">
-        <p>COLINS MOVIE LIST</p>
-        <MovieList />
+        <Router>
+          <p>COLINS MOVIE LIST</p>
+          <Route exact path="/" component={MovieList} />
+          <Route exact path="/description/:id" render={({match})=><MovieDescription match={match}/>}/>
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+const putReduxStateOnProps = (reduxState) => ({
+  reduxState
+})
+
+
+export default connect(putReduxStateOnProps)(App);
