@@ -6,6 +6,8 @@ class MovieDescription extends Component {
 
     state = {
         movie: [],
+        tempOne: '',
+        tempTwo: ''
     }
 
     componentDidMount(){
@@ -31,8 +33,29 @@ class MovieDescription extends Component {
         this.props.history.push(`/`);
     }
 
-    handleSubmit = () => {
+    handleSubmit = (event) => {
+        console.log('temps before', this.state.tempOne, this.state.tempTwo)
+        let edit = {
+            title: this.state.tempOne,
+            description: this.state.tempTwo,
+        }
+        console.log('temps after', this.state.tempOne, this.state.tempTwo)
+        this.props.dispatch({type: 'EDIT_MOVIE', payload: edit})
         this.props.history.push('/');
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            ...this.state,
+            tempOne: event.target.value,
+        })
+    }
+
+    handleChangeTwo = (event) => {
+        this.setState({
+            ...this.state,
+            tempTwo: event.target.value
+        })
     }
 
     render() {
@@ -49,8 +72,8 @@ class MovieDescription extends Component {
                         )
                     })}
                     <br></br>
-                    <input placeholder="Title"></input>   <input placeholder="Description"></input>
-                    <button onClick={this.handleSubmit}>Submit</button>   <button onClick={this.handleClick}>All Movies</button>
+                    <input onChange={(event) => this.handleChange(event)} placeholder="Title"></input>   <input onChange={(event) => this.handleChangeTwo(event)} placeholder="Description"></input>
+                    <button onClick={(event) => this.handleSubmit(event)}>Submit</button>   <button onClick={this.handleClick}>All Movies</button>
                     {/* <h2>{this.props.reduxState.movie.title}</h2> */}
             </div>
         )

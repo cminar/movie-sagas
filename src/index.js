@@ -16,6 +16,7 @@ import createSagaMiddleware from 'redux-saga';
 function* rootSaga() {
     yield takeEvery('MOVIES', getMovies);
     yield takeEvery('SINGLE_MOVIE', getMovie);
+    yield takeEvery('EDIT_MOVIE', editMovie);
 }
 
 // Create sagaMiddleware
@@ -51,6 +52,16 @@ const genres = (state = [], action) => {
     }
 }
 
+function* editMovie(action){
+    try {
+      yield axios.put('/movie', action.payload);
+      console.log('edit movie put', action.payload)
+    } catch (err){
+      console.log('editmovie ERROR:',err);
+    }
+}
+
+
 function* getMovies(action) {
     try{
         const results = yield axios.get('/movie')
@@ -59,7 +70,6 @@ function* getMovies(action) {
     }catch (error){
         console.lof('error in getMovies',error)
     }
-
 }
 
 function* getMovie(action) {
@@ -72,6 +82,8 @@ function* getMovie(action) {
         console.log('error in getMovie', error)
     }
 }
+
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
