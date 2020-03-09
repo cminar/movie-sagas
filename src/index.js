@@ -21,9 +21,11 @@ function* rootSaga() {
 }
 
 function* setGenre(action){
+    console.log('set genre', action.payload)
     try{
       const response = yield axios.get('/movie/genre/' + action.payload);
       yield put({type: 'GENRE_MOVIES', payload: response.data})
+      console.log('set genre response', response.data)
     }catch(err){
       console.log(err);
     }
