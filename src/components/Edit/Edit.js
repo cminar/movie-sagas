@@ -28,11 +28,11 @@ class MovieDescription extends Component {
     }
     
     handleClick = () => {
-        this.props.history.push(`/`)
+        this.props.history.push(`/`);
     }
 
-    handleEdit = () => {
-        this.props.history.push('/edit')
+    handleSubmit = () => {
+        this.props.history.push('/');
     }
 
     render() {
@@ -49,7 +49,8 @@ class MovieDescription extends Component {
                         )
                     })}
                     <br></br>
-                    <button onClick={this.handleEdit}>Edit</button><button onClick={this.handleClick}>All Movies</button>
+                    <input placeholder="Title"></input>   <input placeholder="Description"></input>
+                    <button onClick={this.handleSubmit}>Submit</button>   <button onClick={this.handleClick}>All Movies</button>
                     {/* <h2>{this.props.reduxState.movie.title}</h2> */}
             </div>
         )

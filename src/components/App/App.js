@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import './App.css';
 import MovieList from '../movieList/movieList';
 import MovieDescription from '../MovieDescription/MovieDescription';
+import Edit from '../Edit/Edit'
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           <p>COLINS MOVIE LIST</p>
           <Route exact path="/" component={MovieList} />
           <Route exact path="/description/:id" render={({match})=><MovieDescription match={match}/>}/>
+          <Route exact path="/edit" component={Edit} />
         </Router>
       </div>
     );
