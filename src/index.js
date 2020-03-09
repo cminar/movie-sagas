@@ -17,7 +17,17 @@ function* rootSaga() {
     yield takeEvery('MOVIES', getMovies);
     yield takeEvery('SINGLE_MOVIE', getMovie);
     yield takeEvery('EDIT_MOVIE', editMovie);
+    yield takeEvery('SET_GENRE', setGenre);
 }
+
+function* setGenre(action){
+    try{
+      const response = yield axios.get('/movie/genre/' + action.payload);
+      yield put({type: 'GENRE_MOVIES', payload: response.data})
+    }catch(err){
+      console.log(err);
+    }
+  }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -33,7 +43,6 @@ const movies = (state = [], action) => {
 }
 
 const movie = (state = [], action) => {
-    console.log('action.payload', action.payload)
     switch (action.type) {
         case 'SET_SINGLE':
             return action.payload;
@@ -43,14 +52,24 @@ const movie = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
+
+const genreMovie = (state= [], action)=>{
+    console.log('GENRE MOVIE action.payload', action.payload)
+    switch(action.type){
+      case 'GENRE_MOVIES':
+        return action.payload
+      default:
+        return state
     }
-}
+  }
 
 function* editMovie(action){
     try {
@@ -89,8 +108,9 @@ function* getMovie(action) {
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres,
-        movie
+        // genres,
+        movie,
+        genreMovie
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

@@ -18,6 +18,10 @@ class Movie extends Component {
         
     }
 
+    genre = (id) => {
+        this.props.history.push(`/genre/${id}`)
+    }
+
     render() {
         return (
             <div className='movie'>
@@ -30,6 +34,7 @@ class Movie extends Component {
                     <br></br>
                     {this.props.movie.description}
                     <br></br>
+                    <button onClick={ () => this.genre(this.props.movie.id)}>Genre</button>
                     <br></br>
                     <br></br>
                     <br></br>

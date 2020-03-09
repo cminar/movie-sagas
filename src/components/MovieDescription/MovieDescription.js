@@ -26,6 +26,7 @@ class MovieDescription extends Component {
         console.log('reduxState after', this.props.reduxState.movie)
 
     }
+
     
     handleClick = () => {
         this.props.history.push(`/`)

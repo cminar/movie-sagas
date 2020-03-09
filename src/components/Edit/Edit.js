@@ -38,6 +38,7 @@ class MovieDescription extends Component {
         let edit = {
             title: this.state.tempOne,
             description: this.state.tempTwo,
+            id: this.state.movie.id
         }
         console.log('temps after', this.state.tempOne, this.state.tempTwo)
         this.props.dispatch({type: 'EDIT_MOVIE', payload: edit})
