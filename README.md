@@ -1,9 +1,15 @@
 # Project Name
 
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+Movie Sagas
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Made a movie list that sorts by genre.
+
+Technologies Used:
+React,
+redux,
+postgres,
+JSX
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
